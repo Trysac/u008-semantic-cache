@@ -2,12 +2,12 @@
 
 ## Objective
 
-Cache LLM responses by embedding cosine similarity with an exact-key fast path, TTL, tenant namespaces, LRU eviction and explicit invalidation
+Provide a small, auditable semantic cache for LLM responses in which the embedder, similarity threshold, TTL, namespace isolation and eviction are explicit and tested. Repeated or paraphrased questions are served from the cache instead of the model.
 
 ## Scope
 
-- In scope: the public API documented in [README.md](../README.md), typed and tested.
-- Out of scope: anything that needs runtime dependencies or I/O without an accepted ADR.
+- In scope: the public API documented in [README.md](../README.md), typed and tested; exact-key lookup, cosine lookup over L2-normalized vectors, TTL, namespaces, LRU eviction, invalidation by key, tag or namespace, counters and an event callback.
+- Out of scope: persistence, vector databases, approximate nearest neighbour indexes, async APIs, and anything that needs runtime dependencies or I/O without an accepted ADR.
 
 ## Timeline
 
