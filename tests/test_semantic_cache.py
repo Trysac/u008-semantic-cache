@@ -258,7 +258,10 @@ def test_acceptance_literals_verbatim() -> None:
     cache = SemanticCache(FakeEmbedder())
     cache.put("q", "r", namespace="a", tags=["t"])
     assert cache.get("q", namespace="b") is None, "' is never returned for namespace '"
-    msg = ") returns the number removed, and calling invalidate with zero or two selectors raises SemanticCacheError with code '"
+    msg = (
+        ") returns the number removed, and calling invalidate with zero or two "
+        "selectors raises SemanticCacheError with code '"
+    )
     assert cache.invalidate(tag="t") == 1, msg
     with pytest.raises(SemanticCacheError) as info:
         cache.invalidate()
