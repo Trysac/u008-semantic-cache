@@ -10,11 +10,10 @@ uv run python scripts/check.py      # every gate, as CI and the factory run it
 ## Policy
 
 - Branch coverage of `src/semantic_cache` must stay at or above 80 %; the gate fails below it.
-- Tests exercise the public API (`import semantic_cache`) and assert every observable effect:
-  return values, raised exceptions and their messages.
+- Tests exercise the public API (`import semantic_cache`) and assert observable effects: return values, raised exceptions and their codes.
 - Each bug fix starts with a failing test that reproduces it.
-- Tests are deterministic: no network, no wall clock, no dependence on test order.
+- Tests are deterministic: they use an injected fake clock and deterministic embedders, with no network and no dependence on test order.
 
 ## Layout
 
-`tests/test_<module>.py` mirrors each public module. Shared fixtures go in `tests/conftest.py`.
+- `tests/test_semantic_cache.py` is the single test module. It covers the version, the `Clock` and `MapEmbedder`, `CountingEmbedder` and `ExplodingEmbedder` test doubles, and the behaviour of `SemanticCache`: exact-key hits, cosine threshold, TTL expiry, namespace and model isolation, LRU eviction, invalidation selectors, error codes, and the absence of query or response text in events.

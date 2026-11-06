@@ -9,4 +9,5 @@ adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
 ### Added
 
+- Add `SemanticCache`: embedding-similarity LLM response cache with exact-key fast path, TTL, namespaces, LRU eviction, tag/key/namespace invalidation, stats and content-free events, plus `FakeEmbedder` and `SemanticCacheError`.
 - Initial project structure from the factory utility template.
