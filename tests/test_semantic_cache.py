@@ -562,7 +562,8 @@ def test_fake_embedder_properties() -> None:
     assert len(vector) == 32
     assert math.fsum(x * x for x in vector) == pytest.approx(1.0)
     assert embedder.embed("The Cat sat") == embedder.embed("sat cat THE!")
-    assert FakeEmbedder(dimension=32).embed("abc def") == FakeEmbedder(dimension=32).embed("abc def")
+    other = FakeEmbedder(dimension=32)
+    assert other.embed("abc def") == FakeEmbedder(dimension=32).embed("abc def")
     assert embedder.model_id == "fake-bow-32"
     assert FakeEmbedder(model_id="custom").model_id == "custom"
     shared = FakeEmbedder().embed("alpha beta")

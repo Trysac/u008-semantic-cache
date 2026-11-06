@@ -50,7 +50,9 @@ __version__ = "0.1.0"
 logger = logging.getLogger(__name__)
 logger.addHandler(logging.NullHandler())
 
-ErrorCode = Literal["dimension_mismatch", "invalid_embedding", "invalid_argument", "input_too_large"]
+ErrorCode = Literal[
+    "dimension_mismatch", "invalid_embedding", "invalid_argument", "input_too_large"
+]
 
 _MAX_DIMENSION = 65_536
 _MAX_TAGS = 32
@@ -327,7 +329,7 @@ class SemanticCache:
         response: str,
         *,
         namespace: str = "default",
-        ttl: float | None | EllipsisType = ...,
+        ttl: float | EllipsisType | None = ...,
         tags: Sequence[str] = (),
     ) -> str:
         """Store ``response`` for ``query`` and return the entry key.
